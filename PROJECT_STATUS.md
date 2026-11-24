@@ -52,22 +52,79 @@ will review business performance and profit/loss remotely.
 
 ## Current Status
 - [x] Private GitHub repository created
-- [ ] Ubuntu ISO download completed
-- [ ] VMware VM created
-- [ ] Ubuntu installed and verified
-- [ ] Development environment installed
-- [ ] Initial application created
+- [x] Ubuntu ISO download completed
+- [x] VMware VM created
+- [x] Ubuntu installed and verified
+- [x] Development environment installed
+- [x] Initial application created
 - [ ] Local application tested
 - [ ] Cloud hosting selected
 - [ ] Cloud deployment tested
 - [ ] Backup and restore tested
 
+## Development Environment (Working)
+- Host: VMware Workstation on the development machine
+- Guest OS: Ubuntu 26.04.1 LTS (verified)
+- Editor and AI assistant: VS Code with the Kilo Code extension
+- Kilo Code provider: FreeModel
+  - Provider entry: `openainew`, display name `freemodel`
+  - Model: `claude-opus-5-5` (shown as "claude")
+- Kilo configuration is stored outside the repository, in
+  `~/.config/kilo/kilo.jsonc`. No credentials are kept in
+  the project folder, so none can be committed by accident.
+- Source control: GitHub repository connected as the remote
+  `origin` (github.com/Circuit09/annapurna-foods), branch `main`
+
+## Current Application Scope
+The project currently consists of a single public homepage.
+No backend, no database and no JavaScript exist yet.
+
+Files in the repository:
+- `index.html` - homepage markup
+- `style.css` - homepage styling
+- `PROJECT_STATUS.md` - this file
+- `README.md` - one-line project description
+
+What the homepage contains:
+- Header with brand name and tagline
+- Sticky navigation bar linking to each section
+- Hero / welcome section with call-to-action buttons
+- Four product cards: Roasted Peanuts, Handmade Chakli
+  (with separate Bhajani/Multigrain and Rice Flour variants),
+  Chivda, Ladoo
+- About Us section
+- Contact section with Call and WhatsApp buttons
+- Footer
+- Responsive layout for Android phones and desktop screens
+
+Known gaps in the homepage (to be addressed next):
+- Phone number and WhatsApp number are still placeholders, so
+  the contact buttons do not work yet
+- No product photographs
+- Product cards carry no prices, by design for now
+- Business context above lists three types of handmade chakli,
+  but the homepage currently shows two variants. The third
+  needs to be confirmed before it is added.
+
 ## Last Completed Milestone
-Private GitHub repository created.
+Initial homepage implemented with `index.html` and `style.css`,
+then committed and pushed to GitHub on the `main` branch
+(commit `dd6b64f`, "Build initial Annapurna Foods homepage").
+Local `main` is in sync with `origin/main`.
 
 ## Next Action
-Create and commit this status file. Then complete the
-Ubuntu ISO download and create the Annapurna-Dev VM.
+Review the homepage in a browser on both desktop and an
+Android phone, and confirm it looks correct. Then:
+
+1. Review homepage and fix any layout or wording issues
+2. Improve the design and add product photographs
+3. Confirm the third chakli variant and add it to the page
+4. Replace the phone and WhatsApp placeholders with the real
+   numbers
+5. Build the business dashboard
+6. Add sales entry
+7. Add expense entry
+8. Add inventory tracking
 
 ## Important Decisions
 Do not expose the development laptop directly to the
