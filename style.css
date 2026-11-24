@@ -1,0 +1,561 @@
+/* =========================================================
+   ANNAPURNA FOODS - STYLESHEET
+   Plain CSS only. No frameworks, no downloads.
+
+   A note on "mobile-first":
+   The styles outside any @media block are the PHONE styles.
+   The @media blocks near the bottom add wider layouts for
+   tablets and desktops. This is the recommended approach
+   because phones get the simplest, fastest layout first.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. COLOUR AND SIZE VARIABLES
+   Defined once here, used everywhere below. If you ever want
+   to change the brown, you change one line, not fifty.
+   --------------------------------------------------------- */
+:root {
+    --cream: #fdf6ec;
+    --cream-deep: #f6e8d5;
+    --brown-dark: #3d2414;
+    --brown: #4a2c17;
+    --terracotta: #c05621;
+    --terracotta-dark: #9c4419;
+    --saffron: #e9a13b;
+    --whatsapp: #1f8f4e;
+    --whatsapp-dark: #176f3d;
+    --text: #3b2f27;
+    --text-soft: #6b5b4e;
+    --border: #e3d3bd;
+
+    --radius: 12px;
+    --shadow: 0 2px 6px rgba(61, 36, 20, 0.08);
+    --shadow-lift: 0 8px 20px rgba(61, 36, 20, 0.14);
+    --max-width: 1080px;
+}
+
+
+/* ---------------------------------------------------------
+   2. RESET
+   Different browsers apply different default margins.
+   This small block makes them all start from the same place.
+   --------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    /* border-box means padding is included INSIDE the width,
+       so a 300px box with 20px padding is still 300px wide.
+       This single line prevents most surprise layout bugs. */
+    box-sizing: border-box;
+}
+
+body,
+h1, h2, h3,
+p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* ---------------------------------------------------------
+   3. PAGE BASE
+   --------------------------------------------------------- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+
+    /* 1.6 means "1.6 times the font size" between lines.
+       Makes paragraphs much easier to read. */
+    line-height: 1.6;
+
+    /* Prevents sideways scrolling on narrow phones if
+       something ever pokes out slightly. */
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.2;
+}
+
+/* Images would shrink to fit their container.
+   (There are none yet, but this is ready for later.) */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* ---------------------------------------------------------
+   4. HEADER
+   --------------------------------------------------------- */
+.site-header {
+    background-color: var(--brown);
+    color: var(--cream);
+    text-align: center;
+    padding: 28px 20px;
+}
+
+.brand {
+    /* clamp(minimum, preferred, maximum)
+       The font grows with the screen but never gets smaller
+       than 26px or larger than 42px. This replaces several
+       separate media queries. */
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    letter-spacing: 0.5px;
+}
+
+.tagline {
+    margin-top: 6px;
+    color: var(--saffron);
+    font-size: 0.95rem;
+}
+
+
+/* ---------------------------------------------------------
+   5. NAVIGATION BAR
+   --------------------------------------------------------- */
+.site-nav {
+    background-color: var(--cream-deep);
+    border-bottom: 1px solid var(--border);
+
+    /* position: sticky keeps the bar at the top of the screen
+       while the page scrolls. Very helpful on a phone. */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.site-nav ul {
+    /* Flexbox puts the links in a row and lets them wrap
+       onto a second line on narrow screens. */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 10px;
+}
+
+.site-nav a {
+    display: block;
+    padding: 10px 14px;
+    color: var(--brown-dark);
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-decoration: none;
+
+    /* Makes the tap target comfortably large for a thumb.
+       Around 44px is the usual guideline. */
+    border-radius: 8px;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    background-color: var(--terracotta);
+    color: #ffffff;
+}
+
+/* A visible outline for keyboard users who press Tab. */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--terracotta);
+    outline-offset: 2px;
+}
+
+
+/* ---------------------------------------------------------
+   6. HERO / WELCOME SECTION
+   --------------------------------------------------------- */
+.hero {
+    background: linear-gradient(160deg, var(--cream) 0%, var(--cream-deep) 100%);
+    text-align: center;
+    padding: 56px 20px 52px;
+}
+
+.hero h2 {
+    font-size: clamp(1.5rem, 6vw, 2.4rem);
+    color: var(--brown-dark);
+    margin-bottom: 16px;
+}
+
+.hero p {
+    max-width: 34rem;
+    margin: 0 auto 28px;
+    color: var(--text-soft);
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+
+/* Buttons sit side by side on wide screens and stack on phones. */
+.hero-actions,
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* ---------------------------------------------------------
+   7. BUTTONS
+   One shared .btn style, plus colour variants.
+   --------------------------------------------------------- */
+.btn {
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+
+    /* Gives a small tap target on phones: fills the width
+       up to a comfortable size, but not edge to edge. */
+    min-width: 180px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary {
+    background-color: var(--terracotta);
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background-color: var(--terracotta-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--brown-dark);
+    border: 2px solid var(--brown-dark);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+    background-color: var(--brown-dark);
+    color: var(--cream);
+}
+
+.btn-whatsapp {
+    background-color: var(--whatsapp);
+    color: #ffffff;
+}
+
+.btn-whatsapp:hover,
+.btn-whatsapp:focus-visible {
+    background-color: var(--whatsapp-dark);
+}
+
+/* Slight lift on hover, for a little polish on desktop.
+   (Disabled automatically on touch-only phones by the CSS
+   rule inside the media query at the bottom.) */
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------
+   8. GENERAL SECTIONS
+   --------------------------------------------------------- */
+.section {
+    padding: 48px 20px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+/* Adds breathing room above a heading when the sticky nav
+   jumps to it. Without this, the nav would cover the title. */
+.section,
+.hero {
+    scroll-margin-top: 70px;
+}
+
+.section h2 {
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    color: var(--brown-dark);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.section-intro {
+    text-align: center;
+    color: var(--text-soft);
+    max-width: 36rem;
+    margin: 0 auto 32px;
+}
+
+/* A slightly different background, used to visually separate
+   the About section from the Products section above it. */
+.section-alt {
+    background-color: var(--cream-deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    /* Makes the coloured band stretch the full screen width,
+       while the text inside keeps its normal spacing. */
+    max-width: none;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.section-alt p {
+    max-width: var(--max-width);
+    margin: 0 auto 14px;
+    color: var(--text-soft);
+}
+
+
+/* ---------------------------------------------------------
+   9. PRODUCT GRID AND CARDS
+   --------------------------------------------------------- */
+.product-grid {
+    display: grid;
+
+    /* This one line is what makes the layout responsive:
+       - auto-fit: fit as many columns as will fit
+       - minmax(240px, 1fr): each column is at least 240px wide,
+         and grows to share leftover space equally
+       On a narrow phone only one 240px column fits, so cards
+       stack. On a desktop four fit side by side. */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0 20px 20px;
+    box-shadow: var(--shadow);
+
+    /* Very short animation when hovered. */
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    /* So the coloured band at the top can be clipped to
+       the rounded corners of the card. */
+    overflow: hidden;
+
+    /* Flex column keeps cards the same height when one has
+       more text than another, and pushes the note to the bottom. */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-3px);
+}
+
+.product-card h3 {
+    font-size: 1.25rem;
+    color: var(--brown-dark);
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    color: var(--text-soft);
+    font-size: 0.97rem;
+}
+
+/* The decorative band at the top of each card.
+   Text is added by aria-hidden in the HTML, so screen
+   readers skip it - it is decoration, not information. */
+.card-band {
+    /* Pulls the band out to the card edges, above the padding. */
+    margin: 0 -20px 16px;
+    padding: 22px 20px;
+
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--saffron) 100%);
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* The "Ask for current availability" line, pinned to the
+   bottom of the card by margin-top: auto. */
+.card-note {
+    margin-top: auto;
+    padding-top: 14px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-soft);
+    border-top: 1px dashed var(--border);
+}
+
+
+/* ---------------------------------------------------------
+   10. CHAKLI VARIANTS
+   The two chakli types, each on its own row with a
+   coloured badge so they are easy to tell apart.
+   --------------------------------------------------------- */
+.variants {
+    margin: 14px 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.variant {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    background-color: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.variant-name {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--brown-dark);
+}
+
+.variant-tag {
+    font-size: 0.72rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: #ffffff;
+}
+
+/* Different background colour per variant. */
+.variant-tag-multigrain {
+    background-color: var(--brown);
+}
+
+.variant-tag-rice {
+    background-color: var(--saffron);
+    color: var(--brown-dark);
+}
+
+
+/* ---------------------------------------------------------
+   11. CONTACT SECTION
+   --------------------------------------------------------- */
+.placeholder-note {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+
+    /* A dashed box makes it obvious this text is temporary. */
+    border: 1px dashed var(--terracotta);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--cream-deep);
+}
+
+
+/* ---------------------------------------------------------
+   12. FOOTER
+   --------------------------------------------------------- */
+.site-footer {
+    background-color: var(--brown-dark);
+    color: var(--cream-deep);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.9rem;
+}
+
+
+/* ---------------------------------------------------------
+   13. RESPONSIVE ADJUSTMENTS
+   Mobile styles are already the default above.
+   These blocks add extra room as the screen gets wider.
+   --------------------------------------------------------- */
+
+/* --- Phones: keep buttons full width and easy to tap --- */
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 16px;
+    }
+
+    .section {
+        padding: 36px 16px;
+    }
+
+    /* Full-width buttons are far easier to hit with a thumb. */
+    .btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero-actions,
+    .contact-actions {
+        flex-direction: column;
+    }
+
+    .variant {
+        align-items: flex-start;
+    }
+}
+
+/* --- Tablets and up: more generous spacing --- */
+@media (min-width: 700px) {
+    .section {
+        padding: 64px 32px;
+    }
+
+    .hero {
+        padding: 80px 32px 72px;
+    }
+
+    .product-grid {
+        gap: 26px;
+    }
+}
+
+/* --- Desktop: slightly larger body text for long lines --- */
+@media (min-width: 1024px) {
+    body {
+        font-size: 17px;
+    }
+
+    .section-alt p {
+        text-align: left;
+    }
+}
+
+/* --- Touch devices: turn off the hover "lift" effect,
+       because on a touchscreen a hover state can get stuck
+       after tapping. --- */
+@media (hover: none) {
+    .btn:hover,
+    .product-card:hover {
+        transform: none;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   14. REDUCED MOTION
+   Some people find animation uncomfortable. If their device
+   asks for less motion, we remove the transitions entirely.
+   --------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
