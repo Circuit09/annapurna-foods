@@ -1,0 +1,5 @@
+__pycache__/
+.venv/
+annapurna.db
+annapurna.db-shm
+annapurna.db-wal

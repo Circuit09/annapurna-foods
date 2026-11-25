@@ -76,14 +76,9 @@ will review business performance and profit/loss remotely.
   `origin` (github.com/Circuit09/annapurna-foods), branch `main`
 
 ## Current Application Scope
-The project currently consists of a single public homepage.
-No backend, no database and no JavaScript exist yet.
+The public homepage remains at `/`. An internal manager is now available at `/manager`, backed by FastAPI and a local SQLite database created at first startup.
 
-Files in the repository:
-- `index.html` - homepage markup
-- `style.css` - homepage styling
-- `PROJECT_STATUS.md` - this file
-- `README.md` - one-line project description
+Files include `app.py` (API and SQLite schema), `manager.html`, `manager.css`, `manager.js`, and `requirements.txt`; existing homepage files remain intact.
 
 What the homepage contains:
 - Header with brand name and tagline
@@ -107,24 +102,18 @@ Known gaps in the homepage (to be addressed next):
   needs to be confirmed before it is added.
 
 ## Last Completed Milestone
-Initial homepage implemented with `index.html` and `style.css`,
-then committed and pushed to GitHub on the `main` branch
-(commit `dd6b64f`, "Build initial Annapurna Foods homepage").
+Initial internal business manager implemented: configurable products/materials and selling prices; sales, purchases, expenses, finished production and opening stock; dashboard cash activity indicator and finished stock. Amounts are stored in paise and weights in grams. No raw material deduction occurs on production. Sales and inventory updates use a single SQLite transaction. SQLite files are ignored by Git.
 Local `main` is in sync with `origin/main`.
 
 ## Next Action
-Review the homepage in a browser on both desktop and an
-Android phone, and confirm it looks correct. Then:
+Install the listed Python dependencies in a supported Python environment and run end-to-end browser checks. Add authentication and persistent hosted database/backups before any internet deployment. Implement costing, customer pricing, editing/deletion and audit history in later milestones.
 
-1. Review homepage and fix any layout or wording issues
-2. Improve the design and add product photographs
-3. Confirm the third chakli variant and add it to the page
-4. Replace the phone and WhatsApp placeholders with the real
-   numbers
-5. Build the business dashboard
-6. Add sales entry
-7. Add expense entry
-8. Add inventory tracking
+## Current Limitations
+- This workspace's Python launcher was unavailable during implementation, so the API could not be started or workflow-tested here.
+- No authentication: keep the manager on a trusted local network only; do not expose it publicly.
+- Profit is not calculated; dashboard shows sales less other expenses as a clearly provisional cash indicator. Purchases are shown separately.
+- Raw-material stock incorporates purchases recorded in kg/g only; other units are recorded as purchases but not converted to stock weight.
+- No customer-specific prices, recipes, or automatic raw-material use.
 
 ## Important Decisions
 Do not expose the development laptop directly to the
